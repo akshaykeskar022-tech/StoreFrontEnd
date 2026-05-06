@@ -1,26 +1,33 @@
 import {Box, Button, Typography} from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import api from "../services/api";
+import { AuthContext } from "../context/AuthContext";
 
 function Login(){
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-
-
+    const {setUser} = useContext(AuthContext);
     const handleLogin = async() =>
         {
         try{
          const response=await api.post("/login", {email:email, password:password});
-         alert(console.log)
+         console.log(response.data);
+         setUser(response.data)
+         alert("Login Successfull");  
+
+         const userData = response.data;
+         if(userData.role === "ADMIN") 
+           navigate("/admin/home");
+          else 
+           navigate("/user/home");
         }
         catch(error)
         {
@@ -92,7 +99,7 @@ function Login(){
 
             <Button variant="contained" color="primary" fullWidth sx={{mt:2, borderRadius:2}} onClick={handleLogin}>Login</Button>
 
-             <Typography sx={{ mt: 2, color: "gray"  }} fullWidth margin="normal">OR</Typography>
+             <Typography sx={{ mt: 2, color: "gray"  }} margin="normal">OR</Typography>
 
             {/* <Typography sx={{mt:3, cursor:"pointer"}} gutterBottom  onClick={()=>navigate("/signup")} >New user?click here for Sign Up</Typography> */}
             

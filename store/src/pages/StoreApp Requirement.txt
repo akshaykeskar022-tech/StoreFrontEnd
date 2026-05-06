@@ -1,0 +1,39 @@
+ADMIN
+	•	Signup & Login
+	•	Create Customer
+	•	Create Product
+	•	View all orders
+
+
+CUSTOMER
+	•	Login
+	•	View Products
+	•	Add to Cart
+	•	Place Order
+	•	View Order History
+
+User (1) → (1) Cart
+Cart (1) → (Many) CartItems
+
+User (1) → (Many) Orders
+Order (1) → (Many) OrderItems
+
+User, Product,  Cart(one to one with User ),  CartItem(Many to one with cart, Many to one with product) Order(Many to one with User), OrderItem(Many to One with Order) show Addtocart api
+
+///////////
+npx create-vite@latest
+Set-ExecutionPolicy RemoteSigned
+npm create vite@latest frontend
+cd frontend
+npm install
+npm run dev
+
+npm install react-router-dom
+npm install  @mui/icons-material @emotion/react 
+npm install axios
+@emotion/styled
+
+
+insert into users (email, name,password,role) values("samtest@Test.com", "Sam Test", "Sec@4321", "USER");
+
+

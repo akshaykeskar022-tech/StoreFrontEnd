@@ -19,16 +19,18 @@ function SignUp()
 
   const handleSignUp = async () =>{
         try{
-            const response = await api.post("/admin/signUp", {
+             const response = await api.post("/admin/signUp", {
                 name: name,
                 email: email,
                 password: password
             });
             console.log(response.data);
-            alert("Login Successful");
+             
+            alert(name +" Sign up Successful");
         }
-        catch(error){
-            alert("Login failed");
+        catch(error)
+        {
+            alert(name +" Sign up Failed");
             console.error(error);
         }
     }
@@ -76,7 +78,7 @@ function SignUp()
             <Button variant="contained" color="primary" fullWidth sx={{mt:2, borderRadius:2}} onClick={handleSignUp}>Sign Up</Button>
             {/* <Link sx={{mt:3, cursor:"pointer"}} gutterBottom  onClick={()=>navigate("/")} >Existing user? click here for Login</Link> */}
                 
-            <Typography sx={{ mt: 2, color: "gray"  }} fullWidth margin="normal">OR</Typography>
+            <Typography sx={{ mt: 2, color: "gray"  }} margin="normal">OR</Typography>
 
             
             <Typography sx={{ mt: 3 }} variant="body2"> 
