@@ -10,7 +10,7 @@ import api from "../services/api";
 
 function SignUp()
 {
-
+   const [adminCode, setAdminCode]=useState ("");
     const [name, setName]=useState ("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,6 +20,7 @@ function SignUp()
   const handleSignUp = async () =>{
         try{
              const response = await api.post("/admin/signUp", {
+                adminCode:adminCode,
                 name: name,
                 email: email,
                 password: password
@@ -27,6 +28,7 @@ function SignUp()
             console.log(response.data);
              
             alert(name +" Sign up Successful");
+            navigate("/");
         }
         catch(error)
         {
@@ -56,7 +58,8 @@ function SignUp()
         }}>
 
             <Typography variant="h6" gutterBottom>Sign up in Store</Typography>
-
+            
+            <TextField label="Admin Verification Code" variant="standard" fullWidth margin="normal" onChange={(e)=>setAdminCode(e.target.value)}/>
             <TextField label="Name" variant="standard" fullWidth margin="normal" onChange={(e)=>setName(e.target.value)}/>
             <TextField label="Email" type="email" variant="standard" fullWidth margin="normal" onChange={(e)=>setEmail(e.target.value)}/>
            

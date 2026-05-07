@@ -118,6 +118,8 @@ function UserDashboard() {
 
   const logout=()=>
   {
+    const confirmed = window.confirm("Do you want to logout?");
+    if (!confirmed) return; // if user clicks Cancel, do nothing
     setUser(null);
     navigate("/");
   }
